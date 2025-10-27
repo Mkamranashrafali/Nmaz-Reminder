@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Azan Audio</title>
+</head>
+<body>
+    <h1>Audio Test Page</h1>
+    <p>Testing audio file access:</p>
+    
+    <h3>Default Adhan (mp3 folder)</h3>
+    <audio controls>
+        <source src="assets/mp3/adhan.mp3" type="audio/mpeg">
+        Audio not supported
+    </audio>
+    
+    <h3>Solid Adhan (mp3 folder)</h3>
+    <audio controls>
+        <source src="assets/mp3/solid_adhan.mp3" type="audio/mpeg">
+        Audio not supported
+    </audio>
+    
+    <h3>Audio Adhan (audio folder)</h3>
+    <audio controls>
+        <source src="assets/audio/adhan.mp3" type="audio/mpeg">
+        Audio not supported
+    </audio>
+    
+    <script>
+        console.log('=== Azan Audio Test Page ===');
+        
+        // Test extension URL construction
+        try {
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                const mp3Url = chrome.runtime.getURL('assets/mp3/adhan.mp3');
+                const solidUrl = chrome.runtime.getURL('assets/mp3/solid_adhan.mp3');
+                const audioUrl = chrome.runtime.getURL('assets/audio/adhan.mp3');
+                
+                console.log('🎵 Extension URLs:');
+                console.log('  Default:', mp3Url);
+                console.log('  Solid:', solidUrl);
+                console.log('  Audio:', audioUrl);
+                
+                // Test audio playback
+                const testAudio = new Audio(mp3Url);
+                testAudio.onloadeddata = () => console.log('✅ Audio loaded successfully');
+                testAudio.onerror = (e) => console.error('❌ Audio load error:', e);
+            } else {
+                console.log('⚠️ Extension context not available');
+            }
+        } catch (error) {
+            console.error('❌ Extension URL test failed:', error);
+        }
+    </script>
+</body>
+</html>

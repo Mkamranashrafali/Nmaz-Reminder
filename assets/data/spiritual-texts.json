@@ -1,0 +1,78 @@
+{
+  "verses": [
+    {
+      "arabic": "وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ وَارْكَعُوا مَعَ الرَّاكِعِينَ",
+      "translation": "And establish prayer and give zakah and bow with those who bow [in worship and obedience].",
+      "reference": "Quran 2:43"
+    },
+    {
+      "arabic": "فَإِذَا قَضَيْتُمُ الصَّلَاةَ فَاذْكُرُوا اللَّهَ قِيَامًا وَقُعُودًا وَعَلَىٰ جُنُوبِكُمْ",
+      "translation": "And when you have completed the prayer, remember Allah standing, sitting, or [lying] on your sides.",
+      "reference": "Quran 4:103"
+    },
+    {
+      "arabic": "إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
+      "translation": "Indeed, prayer prohibits immorality and wrongdoing.",
+      "reference": "Quran 29:45"
+    },
+    {
+      "arabic": "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+      "translation": "And seek help through patience and prayer.",
+      "reference": "Quran 2:45"
+    },
+    {
+      "arabic": "فَوَيْلٌ لِّلْمُصَلِّينَ الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ",
+      "translation": "So woe to those who pray, but are heedless of their prayer.",
+      "reference": "Quran 107:4-5"
+    },
+    {
+      "arabic": "وَالَّذِينَ هُمْ عَلَىٰ صَلَاتِهِمْ يُحَافِظُونَ",
+      "translation": "And those who carefully maintain their prayers.",
+      "reference": "Quran 23:9"
+    }
+  ],
+  "hadith": [
+    {
+      "arabic": "الصَّلاةُ عِمَادُ الدِّينِ",
+      "translation": "Prayer is the pillar of religion.",
+      "reference": "Hadith - Bayhaqi"
+    },
+    {
+      "arabic": "بَيْنَ الرَّجُلِ وَبَيْنَ الشِّرْكِ وَالْكُفْرِ تَرْكُ الصَّلاةِ",
+      "translation": "Between a man and shirk (polytheism) and kufr (disbelief) is abandoning prayer.",
+      "reference": "Hadith - Muslim"
+    },
+    {
+      "arabic": "أَوَّلُ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ الصَّلاةُ",
+      "translation": "The first thing for which a servant will be held accountable on the Day of Judgment is prayer.",
+      "reference": "Hadith - Tirmidhi"
+    },
+    {
+      "arabic": "مَنْ حَافَظَ عَلَيْهَا كَانَتْ لَهُ نُورًا وَبُرْهَانًا وَنَجَاةً يَوْمَ الْقِيَامَةِ",
+      "translation": "Whoever guards his prayer, it will be a light, proof, and salvation for him on the Day of Judgment.",
+      "reference": "Hadith - Ahmad"
+    },
+    {
+      "arabic": "الصَّلاةُ خَيْرُ مَوْضُوعٍ فَمَنْ شَاءَ أَسْتَقَلَّ وَمَنْ شَاءَ أَسْتَكْثَرَ",
+      "translation": "Prayer is the best act placed before mankind, so whoever wishes may do little and whoever wishes may do much.",
+      "reference": "Hadith - Ibn Majah"
+    }
+  ],
+  "dhikr": [
+    {
+      "arabic": "سُبْحَانَ اللهِ وَبِحَمْدِهِ سُبْحَانَ اللهِ الْعَظِيمِ",
+      "translation": "Glory be to Allah and praise be to Him, Glory be to Allah the Great.",
+      "reference": "Dhikr"
+    },
+    {
+      "arabic": "لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ",
+      "translation": "There is no god but Allah alone, with no partner.",
+      "reference": "Dhikr"
+    },
+    {
+      "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+      "translation": "O Allah, send prayers upon Muhammad and the family of Muhammad.",
+      "reference": "Dhikr"
+    }
+  ]
+}

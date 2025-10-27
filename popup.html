@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'">
+    <title>Islamic Namaz Companion</title>
+    <link rel="stylesheet" href="button-enhancements.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 375px;
+            min-height: 500px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c3c5a 0%, #1a5f7a 50%, #2d7a7a 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .date {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .header .location {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 3px;
+        }
+
+        .version-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Prayer Times Roadmap */
+        .prayer-roadmap {
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .prayer-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            z-index: 2;
+            transition: width 0.3s ease;
+            transform: translateY(-50%);
+        }
+
+        .prayer-point {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .prayer-point:hover {
+            transform: translateY(-2px);
+        }
+
+        .prayer-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .prayer-circle.completed {
+            background: linear-gradient(135deg, #4ade80, #22c55e);
+            border-color: #22c55e;
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .prayer-circle.current {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-color: #f59e0b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .prayer-circle.upcoming {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .prayer-name {
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 2px;
+            opacity: 0.9;
+        }
+
+        .prayer-time {
+            font-size: 0.6rem;
+            font-weight: 300;
+            opacity: 0.7;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Next Prayer Section */
+        .next-prayer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .next-prayer h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .next-prayer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .next-prayer-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fbbf24;
+        }
+
+        .countdown {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #4ade80;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .action-btn .icon {
+            margin-right: 6px;
+            font-size: 1rem;
+        }
+
+        /* Status indicator */
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            background: #4ade80;
+        }
+
+        .status-dot.inactive {
+            background: #ef4444;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #fca5a5;
+            font-size: 0.8rem;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🕌 Islamic Namaz Companion</h1>
+            <div class="date" id="current-date">Loading...</div>
+            <div class="location" id="location-info">📍 Detecting location...</div>
+            <div class="version-badge">v4.0.0</div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="prayer-content" style="display: none;">
+            <!-- Prayer Times Roadmap -->
+            <div class="prayer-roadmap">
+                <div class="prayer-timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-progress" id="timeline-progress"></div>
+                    
+                    <div class="prayer-point" data-prayer="fajr">
+                        <div class="prayer-circle" id="fajr-circle">🌅</div>
+                        <div class="prayer-name">Fajr</div>
+                        <div class="prayer-time" id="fajr-time">--:--</div>
+                    </div>
+                    
+                    <div class="prayer-point" data-prayer="dhuhr">
+                        <div class="prayer-circle" id="dhuhr-circle">☀️</div>
+                        <div class="prayer-name">Dhuhr</div>
+                        <div class="prayer-time" id="dhuhr-time">--:--</div>
+                    </div>
+                    
+                    <div class="prayer-point" data-prayer="asr">
+                        <div class="prayer-circle" id="asr-circle">🌤️</div>
+                        <div class="prayer-name">Asr</div>
+                        <div class="prayer-time" id="asr-time">--:--</div>
+                    </div>
+                    
+                    <div class="prayer-point" data-prayer="maghrib">
+                        <div class="prayer-circle" id="maghrib-circle">🌇</div>
+                        <div class="prayer-name">Maghrib</div>
+                        <div class="prayer-time" id="maghrib-time">--:--</div>
+                    </div>
+                    
+                    <div class="prayer-point" data-prayer="isha">
+                        <div class="prayer-circle" id="isha-circle">🌙</div>
+                        <div class="prayer-name">Isha</div>
+                        <div class="prayer-time" id="isha-time">--:--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Prayer Section -->
+            <div class="next-prayer">
+                <h3>Next Prayer</h3>
+                <div class="next-prayer-info">
+                    <div class="next-prayer-name" id="next-prayer-name">Fajr</div>
+                    <div class="countdown" id="next-prayer-countdown">00:00:00</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn" id="settings-btn">
+                    <span class="icon">⚙️</span>
+                    Settings
+                </button>
+                
+                <button class="action-btn" id="update-location-btn">
+                    <span class="icon">📍</span>
+                    Update Location
+                </button>
+                
+                <button class="action-btn" id="play-azan-btn">
+                    <span class="icon">🔊</span>
+                    Play Azan
+                </button>
+            </div>
+        </div>
+
+        <div id="error-content" class="error" style="display: none;">
+            <p>Failed to load prayer times. Please check your internet connection and try again.</p>
+            <button class="action-btn" id="retry-btn" style="margin-top: 10px;">Retry</button>
+        </div>
+
+        <!-- Status -->
+        <div class="status">
+            <div class="status-dot" id="status-dot"></div>
+            <span id="status-text">Connecting...</span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+   "manifest_version": 3,
+   "name": "Islamic Namaz Companion",
+   "version": "4.0.0",
+   "description": "Complete Islamic Prayer Companion with automatic prayer times, full-screen spiritual overlays, custom Azan uploads, and cross-device synchronization for enhanced spiritual focus.",
+   "author": "Islamic Namaz Companion Team",
+   
+   "permissions": [
+      "storage",
+      "alarms", 
+      "activeTab",
+      "tabs",
+      "scripting",
+      "notifications",
+      "geolocation",
+      "idle",
+      "offscreen"
+   ],
+   
+   "host_permissions": [
+      "https://api.aladhan.com/*",
+      "https://api.bigdatacloud.net/*",
+      "https://nominatim.openstreetmap.org/*",
+      "https://ipapi.co/*"
+   ],
+   
+   "background": {
+      "service_worker": "background.js",
+      "type": "module"
+   },
+   
+   "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+         "16": "assets/icons/icon-16.png",
+         "32": "assets/icons/icon-32.png",
+         "48": "assets/icons/icon-48.png",
+         "128": "assets/icons/icon-128.png"
+      }
+   },
+   
+   "content_scripts": [
+      {
+         "matches": ["<all_urls>"],
+         "js": ["content/overlay.js"],
+         "css": ["content/overlay.css"],
+         "run_at": "document_end"
+      }
+   ],
+   
+   "options_page": "settings/settings.html",
+   
+   "web_accessible_resources": [
+      {
+         "resources": [
+            "assets/audio/*",
+            "assets/mp3/*",
+            "assets/data/*",
+            "assets/icons/*",
+            "content/overlay.css",
+            "preview/overlay-preview.html",
+            "test-audio-debug.html"
+         ],
+         "matches": ["<all_urls>"]
+      }
+   ],
+   
+   "icons": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png", 
+      "48": "assets/icons/icon-48.png",
+      "128": "assets/icons/icon-128.png"
+   }
+}

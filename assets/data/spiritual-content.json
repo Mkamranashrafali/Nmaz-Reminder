@@ -1,0 +1,158 @@
+{
+  "verses": [
+    {
+      "arabic": "إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ",
+      "translation": "Indeed, prayer prohibits immorality and wrongdoing",
+      "reference": "Quran 29:45",
+      "category": "prayer"
+    },
+    {
+      "arabic": "وَأَقِمِ الصَّلَاةَ طَرَفَيِ النَّهَارِ وَزُلَفًا مِّنَ اللَّيْلِ",
+      "translation": "And establish prayer at the two ends of the day and at the approach of the night",
+      "reference": "Quran 11:114",
+      "category": "prayer"
+    },
+    {
+      "arabic": "حَافِظُوا عَلَى الصَّلَوَاتِ وَالصَّلَاةِ الْوُسْطَىٰ",
+      "translation": "Maintain with care the [obligatory] prayers and [in particular] the middle prayer",
+      "reference": "Quran 2:238",
+      "category": "prayer"
+    },
+    {
+      "arabic": "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+      "translation": "And seek help through patience and prayer",
+      "reference": "Quran 2:45",
+      "category": "prayer"
+    },
+    {
+      "arabic": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ",
+      "translation": "And when My servants ask you concerning Me, indeed I am near",
+      "reference": "Quran 2:186",
+      "category": "dua"
+    },
+    {
+      "arabic": "وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ",
+      "translation": "And I did not create the jinn and mankind except to worship Me",
+      "reference": "Quran 51:56",
+      "category": "worship"
+    },
+    {
+      "arabic": "وَاذْكُر رَّبَّكَ فِي نَفْسِكَ تَضَرُّعًا وَخِيفَةً",
+      "translation": "And remember your Lord within yourself in humility and in fear",
+      "reference": "Quran 7:205",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+      "translation": "Verily, in the remembrance of Allah do hearts find rest",
+      "reference": "Quran 13:28",
+      "category": "dhikr"
+    }
+  ],
+  "hadith": [
+    {
+      "arabic": "الصَّلَاةُ عِمَادُ الدِّينِ",
+      "translation": "Prayer is the pillar of religion",
+      "reference": "Prophet Muhammad (PBUH)",
+      "category": "prayer"
+    },
+    {
+      "arabic": "أَوَّلُ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ مِنْ عَمَلِهِ صَلَاتُهُ",
+      "translation": "The first thing a person will be questioned about on the Day of Judgment is their prayer",
+      "reference": "Prophet Muhammad (PBUH)",
+      "category": "prayer"
+    },
+    {
+      "arabic": "مَنْ صَلَّى الْفَجْرَ فَهُوَ فِي ذِمَّةِ اللَّهِ",
+      "translation": "Whoever prays Fajr is under the protection of Allah",
+      "reference": "Prophet Muhammad (PBUH)",
+      "category": "fajr"
+    },
+    {
+      "arabic": "الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ",
+      "translation": "Prayer is better than sleep",
+      "reference": "Adhan for Fajr",
+      "category": "fajr"
+    }
+  ],
+  "dhikr": [
+    {
+      "arabic": "سُبْحَانَ اللهِ وَبِحَمْدِهِ",
+      "translation": "Glory be to Allah and praise be to Him",
+      "reference": "Daily Dhikr",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "لَا إِلَٰهَ إِلَّا اللَّهُ",
+      "translation": "There is no god but Allah",
+      "reference": "Kalima Tayyiba",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ",
+      "translation": "O Allah, send prayers and peace upon our Prophet Muhammad",
+      "reference": "Salawat",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ",
+      "translation": "I seek forgiveness from Allah, the Most Great",
+      "reference": "Istighfar",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+      "translation": "All praise is due to Allah, Lord of the worlds",
+      "reference": "Quran 1:2",
+      "category": "dhikr"
+    },
+    {
+      "arabic": "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+      "translation": "There is no power except with Allah",
+      "reference": "Hawqala",
+      "category": "dhikr"
+    }
+  ],
+  "prayerSpecific": {
+    "fajr": [
+      {
+        "arabic": "صَلَاةُ الْفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا",
+        "translation": "The Fajr prayer is better than the world and all that is in it",
+        "reference": "Prophet Muhammad (PBUH)",
+        "category": "fajr"
+      }
+    ],
+    "dhuhr": [
+      {
+        "arabic": "مَنْ صَلَّى الْبَرْدَيْنِ دَخَلَ الْجَنَّةَ",
+        "translation": "Whoever prays during the two cool periods will enter Paradise",
+        "reference": "Prophet Muhammad (PBUH)",
+        "category": "dhuhr"
+      }
+    ],
+    "asr": [
+      {
+        "arabic": "مَنْ تَرَكَ صَلَاةَ الْعَصْرِ فَقَدْ حَبِطَ عَمَلُهُ",
+        "translation": "Whoever abandons Asr prayer, their deeds become worthless",
+        "reference": "Prophet Muhammad (PBUH)",
+        "category": "asr"
+      }
+    ],
+    "maghrib": [
+      {
+        "arabic": "الْمَغْرِبُ عِشَاءُ الْعَرَبِ",
+        "translation": "Maghrib is the evening meal time of the Arabs",
+        "reference": "Islamic Tradition",
+        "category": "maghrib"
+      }
+    ],
+    "isha": [
+      {
+        "arabic": "مَنْ صَلَّى الْعِشَاءَ فِي جَمَاعَةٍ فَكَأَنَّمَا قَامَ نِصْفَ اللَّيْلِ",
+        "translation": "Whoever prays Isha in congregation, it's as if they prayed half the night",
+        "reference": "Prophet Muhammad (PBUH)",
+        "category": "isha"
+      }
+    ]
+  }
+}

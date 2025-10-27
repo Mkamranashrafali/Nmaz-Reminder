@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'">
+    <title>Islamic Prayer Overlay Preview</title>
+    <style>
+        /* Import the overlay styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .preview-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0c3c5a 0%, #1a5f7a 50%, #2d7a7a 100%);
+        }
+
+        .islamic-prayer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .overlay-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0c3c5a 0%, #1a5f7a 50%, #2d7a7a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease-in-out infinite;
+        }
+
+        .overlay-background.fajr {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+        }
+
+        .overlay-background.dhuhr {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%);
+        }
+
+        .overlay-background.asr {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 50%, #9a3412 100%);
+        }
+
+        .overlay-background.maghrib {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 50%, #7f1d1d 100%);
+        }
+
+        .overlay-background.isha {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #020617 100%);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .islamic-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                              radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                              radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px, 45px 45px, 60px 60px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        .overlay-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .prayer-header {
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .mosque-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .prayer-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .prayer-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .countdown-section {
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .countdown-display {
+            font-size: 3rem;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            color: #fbbf24;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .countdown-progress {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            width: 75%;
+            transition: width 1s ease;
+            border-radius: 3px;
+        }
+
+        .spiritual-content {
+            max-width: 800px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .content-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .arabic-text {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .translation-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .reference-text {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .prayer-guide {
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .guide-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .personalized-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .prayer-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .action-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .overlay-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .blocking-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .notice-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .restoration-notice {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .preview-banner {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        .close-preview {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-preview:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="islamic-prayer-overlay">
+            <div class="overlay-background" id="overlay-bg">
+                <div class="islamic-pattern"></div>
+                <div class="overlay-container">
+                    <!-- Header Section -->
+                    <div class="prayer-header">
+                        <div class="mosque-icon">🕌</div>
+                        <h1 class="prayer-title" id="prayer-title">
+                            Time for Prayer
+                        </h1>
+                        <div class="prayer-subtitle" id="prayer-subtitle">
+                            صلاة
+                        </div>
+                    </div>
+
+                    <!-- Spiritual Content Section -->
+                    <div class="spiritual-content">
+                        <div class="content-container">
+                            <div class="arabic-text">إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ</div>
+                            <div class="translation-text">Indeed, prayer prohibits immorality and wrongdoing</div>
+                            <div class="reference-text">Quran 29:45</div>
+                        </div>
+                    </div>
+
+                    <!-- Prayer Guide Section -->
+                    <div class="prayer-guide">
+                        <div class="guide-content">
+                            <div class="personalized-message">
+                                Take this blessed time to connect with Allah and purify your soul
+                            </div>
+                            <div class="prayer-actions">
+                                <div class="action-item">📿 Recite dhikr and supplications</div>
+                                <div class="action-item">🤲 Make personal duas</div>
+                                <div class="action-item">📖 Reflect on the Quran</div>
+                                <div class="action-item">🧘 Practice mindful breathing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Section -->
+                <div class="overlay-footer">
+                    <div class="blocking-notice">
+                        <div class="notice-icon">🔒</div>
+                        <div class="notice-text">
+                            Browser access is restricted during prayer time for spiritual focus
+                        </div>
+                    </div>
+                    <div class="restoration-notice">
+                        The overlay will be automatically removed after the prayer time ends
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-banner">
+                🎨 Overlay Design Preview
+            </div>
+
+            <div class="close-preview" id="close-preview-btn">
+                ✕
+            </div>
+        </div>
+    </div>
+
+    <script src="overlay-preview.js"></script>
+</body>
+</html>

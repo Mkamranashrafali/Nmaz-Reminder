@@ -1,0 +1,31 @@
+{
+  "name": "islamic-namaz-companion",
+  "version": "3.0.0",
+  "description": "Enhanced Chrome extension for prayer reminders with modern UI/UX and advanced features",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'Extension built successfully'",
+    "dev": "echo 'Development mode - load extension in Chrome manually'",
+    "package": "zip -r islamic-namaz-companion-v3.0.0.zip . -x '*.git*' 'node_modules/*' 'package*.json' '*.md'"
+  },
+  "keywords": [
+    "prayer",
+    "salah",
+    "islam",
+    "muslim",
+    "reminder",
+    "chrome-extension",
+    "azan",
+    "qibla"
+  ],
+  "author": "Enhanced by AI Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/username/islamic-namaz-companion.git"
+  },
+  "chrome_extension": {
+    "manifest_version": 3,
+    "minimum_chrome_version": "88"
+  }
+}

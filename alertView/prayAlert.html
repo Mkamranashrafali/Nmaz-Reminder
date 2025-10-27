@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adhan - أَذَان</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      /* Alap elrendezés középre igazításhoz */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #fff; /* opcionális háttér */
+        font-family: sans-serif; /* opcionális betűtípus */
+      }
+
+      #warningPopup {
+        text-align: center;
+        max-width: 800px;
+        padding: 20px;
+      }
+
+      .icon {
+        width: 64px;
+        height: 64px;
+        margin: 20px auto;
+      }
+
+      hr {
+        margin: 20px 0;
+      }
+
+      h1, h3 {
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- FELSŐ IKON -->
+    <img
+      class="icon"
+      src="https://img.icons8.com/?size=100&id=32btraB1XD1S&format=png&color=000000"
+      alt="Icon Top"
+    />
+
+    <div id="warningPopup">
+      <h1>الله أكبر</h1>
+      <p>
+        <h3 id="warningPopupText">
+          أشهد أن لا إله إلا الله <br />
+          أشهد أن محمدا رسول الله <br />
+          حي على الصلاة <br />
+          حي على الفلاح <br />
+          الله أكبر <br />
+          لا إله إلا الله
+        </h3>
+      </p>
+      <hr />
+      <p>
+        <h3>
+          اللہ اکبر <br />
+          میں گواہی دیتا ہوں کہ خدا کے سوا کوئی معبود نہیں <br />
+          میں گواہی دیتا ہوں کہ محمد خدا کا رسول ہے <br />
+          نماز کے لئے آؤ <br />
+          کامیابی کی طرف آؤ <br />
+          اللہ اکبر <br />
+          خدا کے سوا کوئی معبود نہیں <br />
+        </h3>
+      </p>
+      <hr />
+      <p>
+        <h3>
+          Allah is the greatest <br />
+          I bear witness that there is no god but Allah <br />
+          I bear witness that Muhammad is the messenger of Allah <br />
+          Come to prayer <br />
+          Come to success <br />
+          Allah is the greatest <br />
+          There is no god but Allah <br />
+        </h3>
+      </p>
+    </div>
+
+    <!-- ALSÓ IKON -->
+    <img
+      class="icon"
+      src="https://img.icons8.com/?size=100&id=52z8gRNVtQBv&format=png&color=000000"
+      alt="Icon Bottom"
+    />
+
+    <script src="prayAlert.js"></script>
+  </body>
+</html>

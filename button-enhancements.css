@@ -1,0 +1,299 @@
+/* ====================================
+   Islamic Namaz Companion - Button Enhancement CSS v4.0.0
+   Improved Visual Feedback for All Interactive Elements
+   ==================================== */
+
+/* Universal Button Enhancements */
+button, .btn, .action-btn, .toggle, .prayer-point, .nav-item, .mode-option {
+    position: relative;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    user-select: none;
+}
+
+/* Button Hover Effects */
+button:hover, .btn:hover, .action-btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Button Active Effects */
+button:active, .btn:active, .action-btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Toggle Button Enhancements */
+.toggle {
+    position: relative;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.toggle:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.toggle:hover:before {
+    opacity: 1;
+}
+
+.toggle.active {
+    background: linear-gradient(135deg, #4ade80, #22c55e) !important;
+    color: white !important;
+}
+
+/* Prayer Point Enhancements */
+.prayer-point {
+    transition: all 0.3s ease !important;
+}
+
+.prayer-point:hover {
+    transform: translateY(-3px) !important;
+}
+
+.prayer-point:hover .prayer-circle {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Navigation Item Enhancements */
+.nav-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.nav-item:hover:before {
+    left: 100%;
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Mode Option Enhancements */
+.mode-option {
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.mode-option:hover {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.mode-option.selected {
+    border-color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.2) !important;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.3) !important;
+}
+
+/* Input Field Enhancements */
+input[type="text"], input[type="time"], input[type="range"], select {
+    transition: all 0.2s ease !important;
+}
+
+input[type="text"]:focus, input[type="time"]:focus, select:focus {
+    outline: none !important;
+    border-color: #4ade80 !important;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3) !important;
+}
+
+/* Range Input Enhancements */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+    background: rgba(255, 255, 255, 0.3);
+    height: 4px;
+    border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #4ade80;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+/* File Input Enhancement */
+.azan-upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.azan-upload-area:hover {
+    border-color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.1) !important;
+}
+
+.azan-upload-area.dragover {
+    border-color: #22c55e !important;
+    background: rgba(74, 222, 128, 0.2) !important;
+    transform: scale(1.02) !important;
+}
+
+/* Loading Button State */
+.btn.loading, button.loading, .action-btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn.loading:after, button.loading:after, .action-btn.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: buttonSpin 1s linear infinite;
+}
+
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: buttonSpin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes buttonSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* Disabled Button State */
+button:disabled, .btn:disabled, .action-btn:disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+/* Success Button State */
+.btn.success, button.success, .action-btn.success {
+    background: linear-gradient(135deg, #4ade80, #22c55e) !important;
+    color: white !important;
+    border-color: #22c55e !important;
+}
+
+/* Error Button State */
+.btn.error, button.error, .action-btn.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    color: white !important;
+    border-color: #dc2626 !important;
+}
+
+/* Click Ripple Effect */
+.btn, .action-btn, .toggle, .prayer-point {
+    overflow: hidden;
+    position: relative;
+}
+
+.btn:after, .action-btn:after, .toggle:after, .prayer-point:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:active:after, .action-btn:active:after, .toggle:active:after, .prayer-point:active:after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Focus Indicators for Accessibility */
+button:focus, .btn:focus, .action-btn:focus, .toggle:focus {
+    outline: 2px solid #4ade80 !important;
+    outline-offset: 2px !important;
+}
+
+/* Mobile Touch Enhancements */
+@media (hover: none) and (pointer: coarse) {
+    button, .btn, .action-btn, .toggle, .prayer-point, .nav-item {
+        min-height: 44px; /* Minimum touch target size */
+        min-width: 44px;
+    }
+    
+    button:hover, .btn:hover, .action-btn:hover {
+        transform: none !important; /* Disable hover transforms on touch devices */
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    button, .btn, .action-btn {
+        border: 2px solid currentColor !important;
+    }
+    
+    .toggle.active {
+        background: #000 !important;
+        color: #fff !important;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    button, .btn, .action-btn, .toggle, .prayer-point, .nav-item {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .btn:after, .action-btn:after, .toggle:after, .prayer-point:after {
+        display: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    button, .btn, .action-btn {
+        display: none !important;
+    }
+}
