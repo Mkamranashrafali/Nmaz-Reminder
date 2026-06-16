@@ -58,8 +58,7 @@
             "assets/data/*",
             "assets/icons/*",
             "content/overlay.css",
-            "preview/overlay-preview.html",
-            "test-audio-debug.html"
+            "preview/overlay-preview.html"
          ],
          "matches": ["<all_urls>"]
       }

@@ -33,7 +33,12 @@ const prayerConfig = {
 
 // Set prayer-specific content
 function initializePrayerDisplay() {
-    const prayer = prayerConfig[prayerName.toLowerCase()] || prayerConfig.dhuhr;
+    // Validate prayer name and convert to lowercase safely
+    const safePrayerName = prayerName && typeof prayerName === 'string' 
+        ? prayerName.toLowerCase() 
+        : 'dhuhr';
+    
+    const prayer = prayerConfig[safePrayerName] || prayerConfig.dhuhr;
     
     // Update title and subtitle
     document.getElementById('prayer-title').textContent = `Time for ${prayer.name} Prayer`;

@@ -45,6 +45,9 @@ class IslamicPrayerOverlay {
                     switch (message.type || message.action) {
                         case 'SHOW_PRAYER_OVERLAY':
                         case 'showNamazOverlay':
+                            // Extract and validate prayer name
+                            const prayerName = message.prayer || message.prayerName || 'Prayer';
+                            
                             // Store custom message if provided
                             if (message.message) {
                                 this.customMessage = message.message;
@@ -52,11 +55,11 @@ class IslamicPrayerOverlay {
                             
                             if (message.remainingTime || message.duration) {
                                 await this.showOverlayWithDuration(
-                                    message.prayer || message.prayerName,
+                                    prayerName,
                                     message.remainingTime || message.duration
                                 );
                             } else {
-                                await this.showOverlay(message.prayer || message.prayerName);
+                                await this.showOverlay(prayerName);
                             }
                             sendResponse({ success: true });
                             break;
@@ -138,16 +141,39 @@ class IslamicPrayerOverlay {
                 userName: result.userName || 'Muslim',
                 customAzan: result.customAzan
             };
+            
+            // Ensure overlay settings always has required properties
+            if (!this.settings.overlay.textSpeed) {
+                this.settings.overlay.textSpeed = 30000;
+            }
+            if (!this.settings.overlay.duration) {
+                this.settings.overlay.duration = 900000;
+            }
         } catch (error) {
             console.error('❌ Failed to load settings:', error);
-            this.settings = { overlay: { enabled: true, duration: 900000, theme: 'default' } };
+            this.settings = { 
+                overlay: { 
+                    enabled: true, 
+                    duration: 900000, 
+                    theme: 'default',
+                    textSpeed: 30000
+                },
+                notifications: { enabled: true },
+                userName: 'Muslim'
+            };
         }
     }
 
     async showOverlay(prayerName, duration = null) {
         if (this.isActive) return;
         
-        const overlayDuration = duration || this.settings.overlay.duration || 900000; // 15 minutes default
+        // Validate prayer name
+        if (!prayerName) {
+            console.warn('⚠️ Prayer name not provided, using default');
+            prayerName = 'Prayer';
+        }
+        
+        const overlayDuration = duration || this.settings.overlay?.duration || 900000; // 15 minutes default
         this.endTime = Date.now() + overlayDuration;
         
         await this.displayOverlay(prayerName);
@@ -155,6 +181,12 @@ class IslamicPrayerOverlay {
 
     async showOverlayWithDuration(prayerName, remainingTime) {
         if (this.isActive) return;
+        
+        // Validate prayer name
+        if (!prayerName) {
+            console.warn('⚠️ Prayer name not provided, using default');
+            prayerName = 'Prayer';
+        }
         
         this.endTime = Date.now() + remainingTime;
         await this.displayOverlay(prayerName);
@@ -634,7 +666,7 @@ class IslamicPrayerOverlay {
     }
 
     getPrayerSpecificContent(prayerName) {
-        if (!this.spiritualContent?.prayerSpecific) return [];
+        if (!prayerName || !this.spiritualContent?.prayerSpecific) return [];
         
         const specific = this.spiritualContent.prayerSpecific[prayerName.toLowerCase()];
         if (specific && specific.length > 0) {
@@ -646,15 +678,18 @@ class IslamicPrayerOverlay {
     }
 
     getTimeOfDay(prayerName) {
+        if (!prayerName) return 'general';
         const prayer = prayerName.toLowerCase();
         return prayer; // Uses CSS classes for different prayer times
     }
 
     capitalizePrayerName(prayerName) {
+        if (!prayerName) return 'Prayer';
         return prayerName.charAt(0).toUpperCase() + prayerName.slice(1).toLowerCase();
     }
 
     getArabicPrayerName(prayerName) {
+        if (!prayerName) return 'صلاة';
         const arabicNames = {
             fajr: 'صلاة الفجر',
             dhuhr: 'صلاة الظهر',
@@ -671,7 +706,12 @@ class IslamicPrayerOverlay {
             return this.customMessage;
         }
         
-        const userName = this.settings.userName;
+        const userName = this.settings.userName || 'Muslim';
+        
+        if (!prayerName) {
+            return `${userName}, it's time to connect with Allah through prayer.`;
+        }
+        
         const messages = {
             fajr: `${userName}, embrace the blessed dawn with Fajr prayer. Let the morning light illuminate your soul.`,
             dhuhr: `${userName}, pause from worldly matters for Dhuhr prayer. Seek Allah's guidance in the midday brightness.`,
@@ -759,7 +799,7 @@ class IslamicPrayerOverlay {
     }
 
     startTextRotation() {
-        const rotationInterval = this.settings.overlay.textSpeed || 30000; // 30 seconds default
+        const rotationInterval = this.settings.overlay?.textSpeed || 30000; // 30 seconds default
         
         this.textRotationTimer = setInterval(() => {
             this.currentTextIndex++;
